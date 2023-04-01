@@ -3,7 +3,7 @@ import MidiPlayer from "midi-player-js";
 import axios from 'axios'
 
 const SERVER_URL = 'http://localhost:5005'
-const RASPI_URL = 'http://192.168.178.59:5005'
+const RASPI_URL = 'http://192.168.178.59:5010'
 
 
 export class MidiPlayerClass {
@@ -141,7 +141,7 @@ export class MidiPlayerClass {
 
     ledstripUpdate(tick) {
         //console.log(tick, this.activeNotes[tick], this.brightnessMultiplier)
-        axios.post(`${SERVER_URL}/server/update`, { notes: this.activeNotes[tick], brightness: this.brightnessMultiplier  })
+        axios.post(`${RASPI_URL}/server/update`, { notes: this.activeNotes[tick], brightness: this.brightnessMultiplier  })
             .then(res => {
                 console.log(res)
             }).catch(error => {

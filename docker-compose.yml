@@ -1,0 +1,34 @@
+# docker-compose.yml
+version: "3.3"
+
+services:
+  web:
+    build: .
+    restart: always
+    depends_on:
+      - traefik
+    ports:
+      - 5010:5010
+    env_file:
+      - .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`192.168.178.112`)"
+      - "traefik.http.routers.whoami.entrypoints=web"
+    devices:
+      - "/dev/gpiomem"
+
+  traefik:
+    image: traefik:v2.9
+    restart: always
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - 80:80
+      - 8080:8080
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
