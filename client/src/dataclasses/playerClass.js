@@ -3,7 +3,7 @@ import MidiPlayer from "midi-player-js";
 import axios from 'axios'
 
 const SERVER_URL = 'http://localhost:5000'
-const RASPI_URL = 'http://192.168.178.59:5000'
+const RASPI_URL = 'http://192.168.178.59:5005'
 
 
 export class MidiPlayerClass {
