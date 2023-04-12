@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios';
 import { Grid, Container, CircularProgress } from '@mui/material';
 
 import Player from '../components/Player'
@@ -7,9 +6,7 @@ import Sheets from '../components/Sheets'
 import Brightness from '../components/Brightness'
 import Tempo from '../components/Tempo'
 
-
-import { MidiPlayerClass } from '../dataclasses/playerClass';
-
+import { MidiPlayerClass } from '../dataclasses/playerClass'
 
 
 
@@ -53,6 +50,9 @@ function Song() {
             initializedPlayer.ledstripBootup()
             initializedPlayer.setPlayerAndSoundfont().then(() => {
                 initializedPlayer.setMidi(`/midiFiles/${title}.mid`)
+                // initializedPlayer.player.on('fileLoaded', function() {
+                //     setPlayerInitialized(true)
+                // })
             })
         })
 
