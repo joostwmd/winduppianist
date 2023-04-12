@@ -8,7 +8,7 @@ import Brightness from '../components/Brightness'
 import Tempo from '../components/Tempo'
 
 
-import { MidiPlayerClass } from '../playerClass';
+import { MidiPlayerClass } from '../dataclasses/playerClass';
 
 
 

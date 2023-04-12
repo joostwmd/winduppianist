@@ -22,14 +22,14 @@ router.post('/bootup', (req, res) => {
 
 router.post('/update', (req, res) => {
   console.log(req.body)
-  const leds = initLedStrip(1)
+  const leds = initLedStrip(req.body.brightness)
   for (let note of req.body.notes){
       leds[note] = 0xffcc22
   }
   console.log(leds)
   ws281x.render();
 
-  res.status(200).json({ message: 'event received' })
+  res.status(200).json({ message: 'event recived' })
 })
 
 module.exports = router;

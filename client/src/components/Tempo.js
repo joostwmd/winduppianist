@@ -8,7 +8,7 @@ function Tempo({player}) {
 
     const handleTempoChange = (event, newValue) => {
         setTempo(newValue)
-        player.setTempoMultiplier(newValue / 100)
+        player.setTempo(newValue / 100)
     }
 
     return (

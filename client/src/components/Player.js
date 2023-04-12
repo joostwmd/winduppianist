@@ -15,6 +15,7 @@ function Player({ player, title, composer }) {
     const handleTimeSliderChangeCommitted = (event, newValue) => {
         setCurrentTime(newValue);
         player.skipToTick(player.calculateTickFromSec(newValue))
+        setStatus('pause')
     };
 
     const handleLoopSliderChange = (event, newValue, activeThumb) => {
@@ -44,7 +45,7 @@ function Player({ player, title, composer }) {
                 if (count !== 0) {
                     setCount((prevCount) => prevCount - 20)
                 } else if (count === 0) {
-                    player.skipToTick(player.calculateTickFromSec(currentTime))
+                    player.playFromTick(player.calculateTickFromSec(currentTime))
                     setStatus('play')
                     setCount(100)
                 }
@@ -61,8 +62,11 @@ function Player({ player, title, composer }) {
             if (status !== 'play') {
                 return;
             }
-
             if (currentTime >= loopRange[1]) {
+                setStatus('countdown')
+                setCurrentTime(loopRange[0]);
+                player.pause()
+            } else if (currentTime < loopRange[0]) {
                 setStatus('countdown')
                 setCurrentTime(loopRange[0]);
                 player.pause()
@@ -79,7 +83,7 @@ function Player({ player, title, composer }) {
 
     return (
         <Container sx={{ display: 'flex', alignItems: 'center' }}>
-            <Box sx={{ width: '90%', marginLeft: '3%',  }}>
+            <Box sx={{ width: '90%', marginLeft: '3%', }}>
                 <Box sx={{ width: '100%', marginBottom: '15px' }}>
                     <Box display='flex' justifyContent='space-between' sx={{ width: '85%' }}>
                         <Typography variant="h5">{player.secondsToMinutesSeconds(Math.floor(currentTime))}</Typography>

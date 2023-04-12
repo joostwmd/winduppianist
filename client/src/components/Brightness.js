@@ -9,7 +9,7 @@ function Brightness({player}) {
 
     const handleBrightnessSliderChange = (event, newValue) => {
         setBrightness(newValue)
-        player.setBrightnessMultiplier(newValue / 100)
+        player.setBrightness(newValue / 100)
     }
 
     return (

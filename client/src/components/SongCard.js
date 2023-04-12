@@ -14,7 +14,7 @@ function SongCard({ song }) {
     const importImg = async () => {
       
       try {
-        const img = await import(`../noteSheets/${song.title}/1.jpg`)
+        const img = await import(`../notesheets/${song.title}/1.jpg`)
         setCoverImg(img.default)
       } catch (error) {
         console.log(error)
